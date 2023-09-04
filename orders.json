@@ -1,0 +1,32 @@
+{
+    "orders": [
+        {
+            "order_id": "1",
+            "product": "Blogs",
+            "title": "Sample Blog Post",
+            "instructions": "Write a blog post about a specific topic.",
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "deadline": "2023-09-30",
+            "word_count": 800,
+            "payment_method": "Credit Card",
+            "price": 50.00,
+            "status": "Pending",
+            "timestamp": "2023-09-03 14:30:00"
+        },
+        {
+            "order_id": "2",
+            "product": "Assignments",
+            "title": "Assignment for History Class",
+            "instructions": "Complete the history assignment on a given topic.",
+            "name": "Alice Smith",
+            "email": "alice.smith@example.com",
+            "deadline": "2023-10-05",
+            "word_count": 1200,
+            "payment_method": "PayPal",
+            "price": 75.00,
+            "status": "Completed",
+            "timestamp": "2023-09-03 15:45:00"
+        }
+    ]
+}
