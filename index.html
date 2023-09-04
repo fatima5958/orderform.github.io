@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <style>
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+select, input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    outline: none;
+}
+
+button {
+    background-color: #2bc6e2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #5a1a8a;
+}
+
+/* Modal styles (you can further style this if needed) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 15% auto;
+    padding: 20px;
+    max-width: 400px;
+    position: relative;
+}
+
+.close {
+    color: #333;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #555;
+}
+
+#pay-now-button {
+    background-color: #2bc6e2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Form</h1>
+        <form id="order-form">
+            <div class="form-group">
+                <label for="product">Service Type:</label>
+                <select id="product" name="product" required>
+                    <option value="Blogs">Blogs</option>
+                    <option value="Assignments">Assignments</option>
+                    <option value="Articles">Articles</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Title/Topic:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="instructions">Instructions:</label>
+                <textarea id="instructions" name="instructions" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <button type="submit" id="submit-button">Submit Order</button>
+        </form>
+    </div>
+
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2>Order Confirmation</h2>
+            <p>Thank you for placing your order. We will send you an email with payment details shortly.</p>
+            <button id="pay-now-button">Pay Now</button>
+        </div>
+    </div>
+
+    <script>
+        const orderForm = document.getElementById('order-form');
+        const confirmationModal = document.getElementById('confirmation-modal');
+        const closeModal = document.getElementById('close-modal');
+        const submitButton = document.getElementById('submit-button');
+        const payNowButton = document.getElementById('pay-now-button');
+
+        orderForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (validateForm()) {
+                confirmationModal.style.display = 'block';
+            }
+        });
+
+        closeModal.addEventListener('click', function () {
+            confirmationModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === confirmationModal) {
+                confirmationModal.style.display = 'none';
+            }
+        });
+
+        payNowButton.addEventListener('click', function () {
+            // Add code here to initiate payment processing (e.g., with Square).
+            alert('Payment processing is not implemented in this demo.');
+        });
+
+        function validateForm() {
+            // Add form validation logic here (e.g., check if fields are filled correctly).
+            return true; // Return true if form is valid; false if there are validation errors.
+        }
+    </script>
+</body>
+</html>
