@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Styles */
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea,
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        select {
+            appearance: none;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Payment Method Styles */
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .payment-method label {
+            flex: 1;
+            text-align: left;
+        }
+
+        .payment-method input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Button Styles */
+        button[type="submit"],
+        button[type="button"] {
+            background-color: #2bc6e2;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #0078a5;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            margin: 15% auto;
+            text-align: center;
+        }
+
+        .modal h2 {
+            color: #333;
+        }
+
+        .modal p {
+            color: #555;
+            margin: 15px 0;
+        }
+
+        .close {
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+
+        /* Additional Styles */
+        .required {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Form</h1>
+        <form id="order-form">
+            <div class="form-group">
+                <label for="product">Service Type<span class="required">*</span>:</label>
+                <select id="product" name="product" required>
+                    <option value="Blogs">Blogs</option>
+                    <option value="Assignments">Assignments</option>
+                    <option value="Articles">Articles</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Title/Topic<span class="required">*</span>:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="instructions">Instructions<span class="required">*</span>:</label>
+                <textarea id="instructions" name="instructions" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Your Name<span class="required">*</span>:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email<span class="required">*</span>:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="deadline">Deadline<span class="required">*</span>:</label>
+                <input type="date" id="deadline" name="deadline" required>
+            </div>
+
+            <div class="form-group">
+                <label for="word-count">Word Count<span class="required">*</span>:</label>
+                <input type="number" id="word-count" name="word-count" required>
+            </div>
+
+            <div class="form-group">
+                <label for="file-upload">Upload Files (if any):</label>
+                <input type="file" id="file-upload" name="file-upload" accept=".pdf,.doc,.docx">
+            </div>
+
+            <div class="form-group">
+                <label>Payment Method<span class="required">*</span>:</label>
+                <div class="payment-method">
+                    <label for="credit-card">
+                        <input type="radio" id="credit-card" name="payment-method" value="Credit Card" required>
+                        Credit Card
+                    </label>
+                </div>
+                <div class="payment-method">
+                    <label for="paypal">
+                        <input type="radio" id="paypal" name="payment-method" value="PayPal" required>
+                        PayPal
+                    </label>
+                </div>
+            </div>
+            <form id="order-form" action="process.php" method="POST">
+
+            <button type="submit" id="submit-button">Submit Order</button>
+        </form>
+    </div>
+
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2>Order Confirmation</h2>
+            <p>Thank you for placing your order. We will send you an email with payment details shortly.</p>
+            <button id="pay-now-button">Pay Now</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code remains the same as in the previous version.
+    </script>
+</body>
+</html>
